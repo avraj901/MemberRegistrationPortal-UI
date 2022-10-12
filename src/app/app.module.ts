@@ -1,22 +1,36 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MemberregistrationComponent } from './components/memberregistration/memberregistration.component';
 import { HomeComponent } from './components/home/home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { RegistrationformComponent } from './components/registrationform/registrationform.component';
+import { MemberdependentsComponent } from './components/memberdependents/memberdependents.component';
+import { DependentsComponent } from './components/dependents/dependents.component';
+import { UpdatedependentsComponent } from './components/updatedependents/updatedependents.component';
+import { CliamsComponent } from './components/cliams/cliams.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MemberregistrationComponent,
-    HomeComponent
+    HomeComponent,
+    RegistrationformComponent,
+    MemberdependentsComponent,
+    DependentsComponent,
+    UpdatedependentsComponent,
+    CliamsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
