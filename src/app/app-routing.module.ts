@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CliamsComponent } from './components/cliams/cliams.component';
 import { DependentsComponent } from './components/dependents/dependents.component';
 import { HomeComponent } from './components/home/home.component';
+import { MemberclaimComponent } from './components/memberclaim/memberclaim.component';
 import { MemberdependentsComponent } from './components/memberdependents/memberdependents.component';
 import { MemberregistrationComponent } from './components/memberregistration/memberregistration.component';
 import { RegistrationformComponent } from './components/registrationform/registrationform.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path : "dependents/:response", component: MemberdependentsComponent},
   {path : "updatemember", component: DependentsComponent},
   {path : "updatedependents", component: UpdatedependentsComponent},
-  {path : "claim", component: CliamsComponent}
+  {path : "claim", component: CliamsComponent},
+  {path : "memberclaim", component: MemberclaimComponent}
 
  
 ];

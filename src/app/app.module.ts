@@ -12,6 +12,7 @@ import { MemberdependentsComponent } from './components/memberdependents/memberd
 import { DependentsComponent } from './components/dependents/dependents.component';
 import { UpdatedependentsComponent } from './components/updatedependents/updatedependents.component';
 import { CliamsComponent } from './components/cliams/cliams.component';
+import { MemberclaimComponent } from './components/memberclaim/memberclaim.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CliamsComponent } from './components/cliams/cliams.component';
     MemberdependentsComponent,
     DependentsComponent,
     UpdatedependentsComponent,
-    CliamsComponent
+    CliamsComponent,
+    MemberclaimComponent
   ],
   imports: [
     BrowserModule,
