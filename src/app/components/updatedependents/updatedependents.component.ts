@@ -10,30 +10,35 @@ import { DependentsService } from 'src/app/services/dependents.service';
 export class UpdatedependentsComponent implements OnInit {
 
   dependentList: Memberdependents[] = [];
-  dependent : Memberdependents = new Memberdependents();
+  savedependent: Memberdependents = new Memberdependents();
 
-  constructor(private dependentService : DependentsService) { }
+  constructor(private dependentService: DependentsService) { }
 
   ngOnInit(): void {
     this.getDependentsByMemberId();
   }
-  getDependentsByMemberId(){
+  getDependentsByMemberId() {
     this.dependentService.getDependentsByMemberId('R-261').subscribe(data => {
       console.log(data);
       this.dependentList = data;
     }, error => console.log(error));
   }
-  editDependent(id: number){
-    this.dependentService.getDependentById(id).subscribe(data =>{
+  editDependent(id: number) {
+    this.dependentService.getDependentById(id).subscribe(data => {
       console.log(data);
-      this.dependent = data;
+      this.savedependent = data;
+      console.log("savedDependet::"+ this.savedependent)
     }, error => console.log(error)
     )
   }
-  deleteDependent(id: number){
+  deleteDependent(id: number) {
 
   }
-  updateDependent(dependent: Memberdependents,id: number){
-
+  updateDependent(dependent: Memberdependents, id: number) {
+    this.dependentService.updateDependents(dependent, id).subscribe(data => {
+      console.log(data);
+      alert("updated successfully ..!")
+      this.getDependentsByMemberId();
+    }, error => console.log(error));
   }
 }

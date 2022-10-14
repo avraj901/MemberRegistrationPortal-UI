@@ -33,7 +33,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-  
             <form (ngSubmit)="createClaim(claim)" #registerForm="ngForm">
                 <div class="container-2">
 
@@ -65,7 +64,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="inputDate" class="form-label">Publish Date</label>
+                        <label for="inputDate" class="form-label">Date Of Birth</label>
                         <input type="text" [disabled]="isDisabled" [(ngModel)]="claim.dob" value="yyyy-month-date" class="form-control"
                           id="inputDate" name="dateofbirth">
                       </div>
@@ -86,17 +85,11 @@
                         
                     </div>
                     <div class="makecenter ">
-                        <button type="submit" class="btn btn-success"  >Submit</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success me-2"  >Submit</button>
+                        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </form>
-         
-          <!-- <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-outline-success"
-             (click)="updateMember(member,member.id)">Update</button>
-          </div> -->
         </div>
       </div>
     </div>

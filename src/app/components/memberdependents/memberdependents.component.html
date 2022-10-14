@@ -10,17 +10,17 @@
                         <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
                             [(ngModel)]="dependents.name" #name="ngModel" maxlength="15" required>
                         <div *ngIf="(name.touched || registerForm.submitted) && name.errors?.['required']"
-                            style="color:rgb(17, 178, 103)">*Name is Required</div>
+                            style="color:rgb(223, 16, 44)">*Name is Required</div>
                         <div *ngIf="(name.touched || registerForm.submitted) && name.errors?.['maxlength']"
-                            style="color:rgb(17, 178, 103)">*Name should not be more than 15 characters</div>
+                            style="color:rgb(223, 13, 48)">*Name should not be more than 15 characters</div>
 
                     </div>
                 
                     <div class="mb-3">
                         <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter Date Of Birth"
-                            [(ngModel)]="dependents.dob" #dob="ngModel" required>
+                            [(ngModel)]="dependents.dob" #dob="ngModel" required [max]="getToday()">
                         <div *ngIf="(dob.touched || registerForm.submitted) && dob.errors?.['required']"
-                            style="color:rgb(17, 178, 103)">Date of Birth is Required</div>
+                            style="color:rgb(212, 16, 16)">Date of Birth is Required</div>
                     </div>
                     <div class="makecenter">
                         <button type="submit" class="btn btn-success" >Submit</button>

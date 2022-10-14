@@ -24,6 +24,7 @@ export class CliamsComponent implements OnInit {
   createClaim(claim: Claim){
     this.claimService.createClaim(claim).subscribe(data => {
       console.log(data);
+      alert("Claim applied successfully..!")
     })
   }
   applyforClaim(id: number){

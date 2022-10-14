@@ -33,8 +33,8 @@ export class MemberRegistrationService {
     }
     return this.httpCLient.post<Dependents>("http://localhost:9092/savedependent", dependents, requestOptions);
   }
-  getMemberByMemberId(memberId: string): Observable<any[]> {
-    return this.httpCLient.get<Customer[]>(`${this.getCustomerByMemberIdURL}/${memberId}`);
+  getMemberByMemberId(memberId: string): Observable<Member[]> {
+    return this.httpCLient.get<Member[]>(`${this.getCustomerByMemberIdURL}/${memberId}`);
   }
   getMemberById(id: number): Observable<any> {
     return this.httpCLient.get(`${this.getCustomrByIdURL}/${id}`);

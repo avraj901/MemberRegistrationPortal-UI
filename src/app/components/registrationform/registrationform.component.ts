@@ -15,6 +15,9 @@ export class RegistrationformComponent implements OnInit {
   member: Member = new Member();
   memberForm!: FormGroup;
   submitted = false;
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+ }
  
 
   Country: Country[] = [];
