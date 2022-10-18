@@ -33,7 +33,7 @@ export class MemberdependentsComponent implements OnInit {
     this.memberService.saveDependents(depednts).subscribe(response => {
       alert("Successfully added Dependent in Record");
       console.log(response);
-    
+
     }, error => {
       console.log(error);
     }

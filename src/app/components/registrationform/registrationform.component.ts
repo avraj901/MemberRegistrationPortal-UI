@@ -17,27 +17,27 @@ export class RegistrationformComponent implements OnInit {
   submitted = false;
   getToday(): string {
     return new Date().toISOString().split('T')[0]
- }
- 
+  }
+
 
   Country: Country[] = [];
   City: City[] = [];
 
-  cpass:string=''
-  customer:Customer={
-    id:0,
-    name:'',
-    emailAddress:'',
-    contactNumber:'',
-    address:'',
-    dob:new Date(1000, 0, 0, 0, 0, 0, 0),
-    password:'',
+  cpass: string = ''
+  customer: Customer = {
+    id: 0,
+    name: '',
+    emailAddress: '',
+    contactNumber: '',
+    address: '',
+    dob: new Date(1000, 0, 0, 0, 0, 0, 0),
+    password: '',
     panNumber: '',
     country: '',
     state: ''
 
   }
- 
+
   constructor(private memberService: MemberRegistrationService,
     private formBuilder: FormBuilder,
     private router: Router,) { }
@@ -45,14 +45,14 @@ export class RegistrationformComponent implements OnInit {
   ngOnInit(): void {
     this.memberForm = this.formBuilder.group({
       username: ['', Validators.required]
-     
-      
+
+
     });
   }
   get f() { return this.memberForm.controls; }
 
   saveMember(member: Member) {
-     this.submitted = true;
+    this.submitted = true;
     if (this.memberForm.invalid) {
       return;
     }
@@ -65,15 +65,15 @@ export class RegistrationformComponent implements OnInit {
     }
     )
   }
-  saveCust(cust:Customer,pass:string){
-    console.log('customer data',cust);
+  saveCust(cust: Customer, pass: string) {
+    console.log('customer data', cust);
     this.memberService.saveMember(cust).subscribe(response => {
       alert("Successfully added Memebr in Record");
       console.log(response);
-      this.router.navigate(['dependents',response]);
+      this.router.navigate(['dependents', response]);
     }, error => {
       console.log(error);
-     
+
       //this.router.navigate(['details', id])
     }
     )
