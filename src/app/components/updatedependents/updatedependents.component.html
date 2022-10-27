@@ -5,7 +5,6 @@
         <th scope="col">Name</th>
         <th scope="col">Date of Birth</th>
         <th scope="col">Action</th>
-       
       </tr>
     </thead>
     <tbody>
@@ -17,7 +16,6 @@
            <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editEmployee"
             (click)="editDependent(dependent.id)">Edit</button>
           <button type="button" class="btn btn-outline-danger me-2" (click)="deleteDependent(dependent.id)">Delete</button>
-        
         </td>
       </tr>
     </tbody>
@@ -27,13 +25,12 @@
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Member</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Edit Dependent</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-  
          <div class="container">
-            <h3 style="text-align: center;">Member Details</h3>
+            <h3 style="text-align: center;">Dependent Details</h3>
             <div class="mb-3">
               <label for="inputContact" class="form-label">Date of Birth</label>
               <input type="text" [(ngModel)]="savedependent.dob" class="form-control" id="inputContact">

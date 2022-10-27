@@ -13,6 +13,8 @@ import { DependentsComponent } from './components/dependents/dependents.componen
 import { UpdatedependentsComponent } from './components/updatedependents/updatedependents.component';
 import { CliamsComponent } from './components/cliams/cliams.component';
 import { MemberclaimComponent } from './components/memberclaim/memberclaim.component';
+import { ShowdependentsComponent } from './components/showdependents/showdependents.component';
+import { WelcomepageComponent } from './components/welcomepage/welcomepage.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { MemberclaimComponent } from './components/memberclaim/memberclaim.compo
     DependentsComponent,
     UpdatedependentsComponent,
     CliamsComponent,
-    MemberclaimComponent
+    MemberclaimComponent,
+    ShowdependentsComponent,
+    WelcomepageComponent
   ],
   imports: [
     BrowserModule,

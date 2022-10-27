@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Customer } from 'src/app/modal/customer';
+import { Existingmember } from 'src/app/modal/existingmember';
 import { Member } from 'src/app/modal/member';
 import { MemberRegistrationService } from 'src/app/services/member-registration.service';
 
@@ -11,11 +13,11 @@ import { MemberRegistrationService } from 'src/app/services/member-registration.
 export class DependentsComponent implements OnInit {
 
   memberList: Array<any> = [];
-  member: Member = new Member();
-  constructor(private memberService: MemberRegistrationService) { }
+  member: Existingmember = new Existingmember();
+  constructor(private memberService: MemberRegistrationService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getMemberByMemberId();
+    this.getMemberAllMember();
   }
   deleteMember(id: number) {
 
@@ -31,16 +33,22 @@ export class DependentsComponent implements OnInit {
   updateMember(member: Member, id: number) {
     this.memberService.updateMember(member, id).subscribe(data => {
       console.log(data);
-      this.getMemberByMemberId();
+      this.getMemberAllMember();
       alert("Student daetails updated successfully");
     })
   }
 
-  getMemberByMemberId() {
-    this.memberService.getMemberByMemberId('R-261').subscribe(data => {
+  getMemberAllMember() {
+    this.memberService.getAllMember().subscribe(data => {
       console.log(data);
-      this.memberList.push(data);
+      this.memberList = data;
     }, error => console.log(error));
+  }
+  addDependent(response : string){
+    this.router.navigate(['dependents', response]);
+  }
+  showDependent(response : string){
+    this.router.navigate(['showdependents', response]);
   }
 }
 

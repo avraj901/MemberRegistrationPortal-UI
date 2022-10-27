@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Claim } from 'src/app/modal/claim';
 import { Existingmember } from 'src/app/modal/existingmember';
 import { Member } from 'src/app/modal/member';
@@ -16,15 +17,17 @@ export class CliamsComponent implements OnInit {
   savedmember: Existingmember = new Existingmember();
   claim: Claim = new Claim();
   isDisabled: boolean = true;
-  constructor(private memberService: MemberRegistrationService, private claimService: ClaimService) { }
+  constructor(private memberService: MemberRegistrationService, private claimService: ClaimService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.getMemberByMemberId();
+    this.getAllMember();
   }
   createClaim(claim: Claim) {
     this.claimService.createClaim(claim).subscribe(data => {
       console.log(data);
       alert("Claim applied successfully..!")
+      this.getAllMember();
     })
   }
   applyforClaim(id: number) {
@@ -37,11 +40,13 @@ export class CliamsComponent implements OnInit {
       console.log("Date of Birth", this.claim.dob);
     }, error => console.log(error));
   }
-  getMemberByMemberId() {
-    this.memberService.getMemberByMemberId('R-261').subscribe(data => {
+  getAllMember() {
+    this.memberService.getAllMember().subscribe(data => {
       console.log(data);
-      this.memberList.push(data);
+      this.memberList = data;
     }, error => console.log(error));
   }
-
+  dependentClaim(memberId: string) {
+    this.router.navigate(['memberclaim', memberId]);
+  }
 }

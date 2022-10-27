@@ -8,4 +8,5 @@ export class Member {
     address: string = '';
     country: string = '';
     state: string = '';
+   
 }

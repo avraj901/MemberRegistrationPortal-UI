@@ -34,7 +34,7 @@
                         <div class="mb-3">
                             <input type="text" class="form-control" id="name" name="name"
                                 placeholder="Enter Member Name" [(ngModel)]="claim.memberName" #name="ngModel"
-                                maxlength="15" required [pattern]="'^[a-zA-Z ]*$'">
+                                maxlength="15" required [pattern]="'^[a-zA-Z ]*$'" disabled>
                             <div *ngIf="(name.touched || registerForm.submitted) && name.errors?.['required']"
                                 style="color:rgb(233, 14, 14)">*Name is Required</div>
                             <div *ngIf="(name.touched || registerForm.submitted) && name.errors?.['maxlength']"
@@ -61,8 +61,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="inputDate" class="form-label">Publish Date</label>
-                            <input type="text" [disabled]="isDisabled" [(ngModel)]="claim.dob" value="yyyy-month-date"
+                            <label for="inputDate" class="form-label">Date of Birth</label>
+                            <input type="text" [disabled]="isDisabled" [ngModel]="claim.dob | date: 'dd/MM/yyyy'" (ngModelChange)="claim.dob = $event" value="yyyy-month-date"
                                 class="form-control" id="inputDate" name="dateofbirth">
                         </div>
 

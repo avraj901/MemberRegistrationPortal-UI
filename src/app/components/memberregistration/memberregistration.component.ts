@@ -42,7 +42,7 @@ export class MemberregistrationComponent implements OnInit {
     this.City = [];
     var countryName = event.target.value;
     if (countryName == 'India') {
-      this.City.push({ cityId: 1, name: "Surat" }, { cityId: 2, name: "Navsari" }, { cityId: 3, name: "Ahemdabad" });
+      this.City.push({ cityId: 1, name: "Surat" }, { cityId: 2, name: "UP" }, { cityId: 3, name: "Ahemdabad" });
     } else if (countryName == 'Australia') {
       this.City.push({ cityId: 1, name: "Sydney" }, { cityId: 2, name: "Gold Cost" }, { cityId: 3, name: "Darwin" });
     }

@@ -27,4 +27,8 @@ export class DependentsService {
   updateDependents(member: Memberdependents, id: number) {
     return this.httpClient.put(`${this.updateDependentURL}/${id}`, member);
   }
+  
+  getAllDependents(): Observable<any> {
+    return this.httpClient.get("http://localhost:9092/getalldependents");
+  }
 }

@@ -19,8 +19,10 @@
             <td>
                 <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
                     data-bs-target="#editEmployee" (click)="editMember(member.id)">Edit</button>
-                <button type="button" class="btn btn-outline-danger me-2"
-                    (click)="deleteMember(member.id)">Delete</button>
+                <button type="button" class="btn btn-outline-secondary me-2"
+                (click)="addDependent(member.memberId)">Add Dependents</button>
+                <button type="button" class="btn btn-outline-info me-2"
+                (click)="showDependent(member.memberId)">Show Dependents</button>
 
             </td>
         </tr>
@@ -38,6 +40,10 @@
 
                 <div class="container">
                     <h3 style="text-align: center;">Member Details</h3>
+                    <div class="mb-3">
+                        <label for="inputEmail" class="form-label">Name</label>
+                        <input type="text" [(ngModel)]="member.name" class="form-control" id="inputEmail" disabled>
+                    </div>
                     <div class="mb-3">
                         <label for="inputEmail" class="form-label">Email Id</label>
                         <input type="email" [(ngModel)]="member.emailAddress" class="form-control" id="inputEmail">

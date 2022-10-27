@@ -4,43 +4,20 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <strong> <a class="nav-link active" aria-current="page" routerLink="/registration"
-                                href="#">&nbsp;Home</a></strong>
+                        <button routerLink="/welcomepage" class="btn btn-danger mx-2">Home</button>
                     </li>
-                    <li class="nav-item">
-                        <strong> <a class="nav-link active" aria-current="page" routerLink="/about"
-                                href="#">&nbsp;About</a></strong>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <div class="collapse navbar-collapse mb-2" id="navbarSupportedContent">
-                            <button class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#addMemebr"
-                                type="submit">Add
-                                Member</button>
-                        </div>
-                    </li> -->
                     <li class="nav-item">
                         <button routerLink="/registration" class="btn btn-danger mx-2">Add Member</button>
                     </li>
                     <li class="nav-item">
-                        <button routerLink="/updatemember" class="btn btn-danger mx-2">Update Member</button>
+                        <button routerLink="/updatemember" class="btn btn-danger mx-2">Member Details</button>
                     </li>
-                    <li class="nav-item">
-                        <button routerLink="/updatedependents" class="btn btn-danger mx-2">Update Dependents</button>
-                    </li>
+                    <!-- <li class="nav-item">
+                        <button routerLink="/updatedependents" class="btn btn-danger mx-2">All Dependents</button>
+                    </li> -->
                     <li class="nav-item">
                         <button routerLink="/claim" class="btn btn-danger mx-2">Member Claim</button>
                     </li>
-                    <li class="nav-item">
-                        <button routerLink="/memberclaim" class="btn btn-danger mx-2">Claim For Dependents</button>
-                    </li>
-                    <li class="nav-item">
-                        <button routerLink="/login" class="btn btn-danger mx-2">Login</button>
-                    </li>
-
-                    <li class="nav-item">
-                        <button routerLink="/login" class="btn btn-danger mx-2">Logout</button>
-                    </li>
-
                 </ul>
             </div>
         </div>
@@ -91,16 +68,8 @@
                             <input type="text" [(ngModel)]="member.state" class="form-control" id="inputState">
                         </div>
                     </div>
-                    <!-- <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" (click)="save()">Add Book</button>
-                    </div> -->
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-

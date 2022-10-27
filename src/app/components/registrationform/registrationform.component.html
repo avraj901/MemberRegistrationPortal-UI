@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
     <div class="card " style="width: 30rem; background-color: rgb(232, 241, 241);">
-        <div class="card-body">
+        <div class="card-body" *ngIf="!registerSucess">
             <h3 class="card-title text-center">Register</h3>
             <form (ngSubmit)="saveCust(customer,cpass)" #registerForm="ngForm">
                 <div class="container-2">
@@ -14,7 +14,6 @@
                             style="color:rgb(233, 18, 18)">*Name should not be more than 15 characters</div>
                         <div *ngIf="(name.touched || registerForm.submitted) && name.errors?.['pattern']"
                             style="color:rgb(233, 18, 18)">*please enter only characters</div>
-
                     </div>
                     <div class="mb-3">
                         <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email"
@@ -25,7 +24,6 @@
                         <div *ngIf="(email.touched || registerForm.submitted) && email.errors?.['pattern']"
                             style="color:rgb(226, 13, 13)">Enter a valid Email</div>
                     </div>
-
                     <div class="mb-3">
                         <input type="text" class="form-control" id="pannumber" name="pannumber"
                             placeholder="Enter Pan Number" [(ngModel)]="customer.panNumber" #pannumber="ngModel"
@@ -39,10 +37,9 @@
                         <div *ngIf="(pannumber.touched || registerForm.submitted) && pannumber.errors?.['pattern']"
                             style="color:rgb(230, 11, 11)">Special character and space are not allowed</div>
                     </div>
-
                     <div class="mb-3">
                         <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter Date Of Birth"
-                            [(ngModel)]="customer.dob" #dob="ngModel" [max]="getToday()">
+                            [(ngModel)]="customer.dob" #dob="ngModel" [max]="getToday()" required>
                         <!-- <div *ngIf="(dob.touched || registerForm.submitted) && dob.errors?.['required']"
                             style="color:rgb(228, 20, 82)">Date of Birth is Required</div> -->
                     </div>
@@ -66,44 +63,53 @@
                     <div class="mb-3">
                         <input type="password" class="form-control" id="password" name="password"
                             placeholder="Enter Password" [(ngModel)]="customer.password" minlength="8" maxlength="16"
-                            pattern="^(?=.?[A-Z])(?=.?[a-z])(?=.*?[0-9]).{8,16}$" #password="ngModel" required>
+                            #password="ngModel" required>
                         <div *ngIf="(password.touched || registerForm.submitted) && password.errors?.['required']"
                             style="color:rgb(238, 10, 86)">Password is Required</div>
-                        <!-- <div *ngIf="(password.touched || registerForm.submitted) && password.errors?.['pattern']"
+                         <!-- <div *ngIf="(password.touched || registerForm.submitted) && password.errors?.['pattern']"
                             style="color:rgb(17, 178, 103)">Password should have minimum 8 character and Must Contain
                             numerics & special characters & one capital letter</div> -->
                     </div>
-
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="country" name="country" placeholder="Enter country"
+                        <!-- <input type="text" class="form-control" id="country" name="country" placeholder="Enter country"
                             [(ngModel)]="customer.country" #country="ngModel" required>
-                        <div *ngIf="(country.touched || registerForm.submitted) && country.errors?.['required']"
-                            style="color:rgb(236, 18, 18)">Country is Required</div>
-                        <!-- <select (change)='getCity($event)' class="form-control">
-                                <option *ngFor="let Country of Country;" [ngValue]="Country.Id" >
-                                     {{Country.name}}
-                                </option>
-                            </select> -->
+                          <div *ngIf="(country.touched || registerForm.submitted) && country.errors?.['required']"
+                            style="color:rgb(236, 18, 18)">Country is Required</div> -->
+                        <label>Please select the Country</label>
+                        <select (change)='getCity($event)' class="form-select form-control">
+                            <option *ngFor="let Country of Country;" [ngValue]="Country.Id">
+                                {{Country.name}}
+                            </option>
+                        </select>
                     </div>
-
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="state" name="state" placeholder="Enter state"
+                        <!-- <input type="text" class="form-control" id="state" name="state" placeholder="Enter state"
                             [(ngModel)]="customer.state" #state="ngModel" required>
-                        <div *ngIf="(state.touched || registerForm.submitted) && state.errors?.['required']"
-                            style="color:rgb(240, 12, 12)">state is Required</div>
-                        <!-- <select class="form-control">
-                                <option *ngFor="let City of City;" [ngValue]="City.cityId">
-                                     {{City.name}}
-                                </option>
-                            </select> -->
+                          <div *ngIf="(state.touched || registerForm.submitted) && state.errors?.['required']"
+                            style="color:rgb(240, 12, 12)">state is Required</div> -->
+                        <label>Please select the City</label>
+                        <select class=" form-select form-control" name="city" [(ngModel)]="city">
+                            <option *ngFor="let City of City;" [ngValue]="City.name">
+                                {{City.name}}
+                            </option>
+                        </select>
                     </div>
                     <div class="makecenter">
-                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="submit" [disabled]="!registerForm.valid" class="btn btn-success">Submit</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-<!-- [disabled]="!registerForm.valid"  -->
+<div class="row justify-content-center" *ngIf="registerSucess">
+    <div class="card " style="width: 30rem; margin-top: 40px;background-color: azure;">
+        <div class="card-body">
+            <h4> Registeration Success and Member Id :: {{response}}</h4>
+            <button type="submit" class="btn btn-success m-2" (click)=addDependent()>Add Dependent </button>
+            <button type="submit" class="btn btn-secondary m-2" (click)=dependentClose()>Close </button>
+        </div>
+    </div>
+</div>
+<!-- [disabled]="!registerForm.valid" -->
+<!-- pattern="^(?=.?[A-Z])(?=.?[a-z])(?=.*?[0-9]).{8,16}$" -->

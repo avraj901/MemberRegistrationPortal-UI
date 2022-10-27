@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Member } from '../modal/member';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Dependents } from '../modal/dependents';
 import { Customer } from '../modal/customer';
+import { retry, catchError } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -19,19 +20,40 @@ export class MemberRegistrationService {
     this.updateMemberURL = "http://localhost:9092/updatecustomer";
   }
 
-  saveMember(member: Member): Observable<Object> {
-    const requestOptions: Object = {
-      /* other options here */
-      responseType: 'text'
-    }
-    return this.httpCLient.post<Member>("http://localhost:9092/savecustomer", member, requestOptions);
+  saveMember(member: Member): Observable<any> {
+    // const requestOptions: Object = {
+    //   /* other options here */
+    //   responseType: 'text'
+    // }
+    return this.httpCLient.post<Member>("http://localhost:9092/savecustomer", member).pipe (
+      retry (1),
+      catchError(this.handleError)
+    );
   }
-  saveDependents(dependents: Dependents): Observable<any> {
-    const requestOptions: Object = {
-      /* other options here */
-      responseType: 'text'
+  handleError(err:HttpErrorResponse) {
+    let errorMessage = '';
+    if (err.error instanceof ErrorEvent) {
+      // if error is client-side error
+      errorMessage = `Error: ${err.message}`;
+    } else {
+      console.log('error',err);
+      // if error is server-side error
+      errorMessage = `Message: ${err.error.message}`;
     }
-    return this.httpCLient.post<Dependents>("http://localhost:9092/savedependent", dependents, requestOptions);
+    alert(errorMessage);
+    return throwError(errorMessage);
+  }
+  
+
+  saveDependents(dependents: Dependents): Observable<any> {
+    // const requestOptions: Object = {
+    //   /* other options here */
+    //   responseType: 'text'
+    // }
+    return this.httpCLient.post<Dependents>("http://localhost:9092/savedependent", dependents).pipe (
+      retry (1),
+      catchError(this.handleError)
+    );
   }
   getMemberByMemberId(memberId: string): Observable<Member[]> {
     return this.httpCLient.get<Member[]>(`${this.getCustomerByMemberIdURL}/${memberId}`);
@@ -41,5 +63,8 @@ export class MemberRegistrationService {
   }
   updateMember(member: Member, id: number) {
     return this.httpCLient.put(`${this.updateMemberURL}/${id}`, member);
+  }
+  getAllMember(): Observable<any> {
+    return this.httpCLient.get("http://localhost:9092/getAllcustomers");
   }
 }

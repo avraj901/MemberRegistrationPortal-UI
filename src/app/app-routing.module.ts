@@ -7,7 +7,9 @@ import { MemberclaimComponent } from './components/memberclaim/memberclaim.compo
 import { MemberdependentsComponent } from './components/memberdependents/memberdependents.component';
 import { MemberregistrationComponent } from './components/memberregistration/memberregistration.component';
 import { RegistrationformComponent } from './components/registrationform/registrationform.component';
+import { ShowdependentsComponent } from './components/showdependents/showdependents.component';
 import { UpdatedependentsComponent } from './components/updatedependents/updatedependents.component';
+import { WelcomepageComponent } from './components/welcomepage/welcomepage.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'registration', pathMatch:'full'},
@@ -18,7 +20,9 @@ const routes: Routes = [
   {path : "updatemember", component: DependentsComponent},
   {path : "updatedependents", component: UpdatedependentsComponent},
   {path : "claim", component: CliamsComponent},
-  {path : "memberclaim", component: MemberclaimComponent}
+  {path : "memberclaim/:memberId", component: MemberclaimComponent},
+  {path : "showdependents/:memberId", component : ShowdependentsComponent},
+  {path : "welcomepage", component : WelcomepageComponent}
 
  
 ];

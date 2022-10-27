@@ -1,24 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Memberdependents } from 'src/app/modal/memberdependents';
 import { DependentsService } from 'src/app/services/dependents.service';
 
 @Component({
-  selector: 'app-updatedependents',
-  templateUrl: './updatedependents.component.html',
-  styleUrls: ['./updatedependents.component.css']
+  selector: 'app-showdependents',
+  templateUrl: './showdependents.component.html',
+  styleUrls: ['./showdependents.component.css']
 })
-export class UpdatedependentsComponent implements OnInit {
+export class ShowdependentsComponent implements OnInit {
 
+  memberId: string = "";
   dependentList: Memberdependents[] = [];
   savedependent: Memberdependents = new Memberdependents();
 
-  constructor(private dependentService: DependentsService) { }
+  constructor(private route: ActivatedRoute,private dependentService: DependentsService) { }
 
   ngOnInit(): void {
+    this.memberId = this.route.snapshot.params['memberId'];
     this.getDependentsByMemberId();
   }
-  getDependentsByMemberId() {
-    this.dependentService.getAllDependents().subscribe(data => {
+
+   getDependentsByMemberId() {
+    this.dependentService.getDependentsByMemberId(this.memberId).subscribe(data => {
       console.log(data);
       this.dependentList = data;
     }, error => console.log(error));
@@ -41,4 +45,5 @@ export class UpdatedependentsComponent implements OnInit {
       this.getDependentsByMemberId();
     }, error => console.log(error));
   }
+
 }

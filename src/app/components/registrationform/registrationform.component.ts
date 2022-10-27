@@ -15,13 +15,18 @@ export class RegistrationformComponent implements OnInit {
   member: Member = new Member();
   memberForm!: FormGroup;
   submitted = false;
+  response = "";
   getToday(): string {
     return new Date().toISOString().split('T')[0]
   }
 
-
+  countryName = "";
+  city = "";
   Country: Country[] = [];
   City: City[] = [];
+  registerSucess:boolean = false;
+  lessThanEighteen: boolean = false;
+  errorMessage = '';
 
   cpass: string = ''
   customer: Customer = {
@@ -30,7 +35,7 @@ export class RegistrationformComponent implements OnInit {
     emailAddress: '',
     contactNumber: '',
     address: '',
-    dob: new Date(1000, 0, 0, 0, 0, 0, 0),
+    dob: new Date(),
     password: '',
     panNumber: '',
     country: '',
@@ -46,8 +51,8 @@ export class RegistrationformComponent implements OnInit {
     this.memberForm = this.formBuilder.group({
       username: ['', Validators.required]
 
-
     });
+    this.getCountry();
   }
   get f() { return this.memberForm.controls; }
 
@@ -56,7 +61,7 @@ export class RegistrationformComponent implements OnInit {
     if (this.memberForm.invalid) {
       return;
     }
-
+   
     this.memberService.saveMember(member).subscribe(response => {
       alert("Successfully added Memebr in Record");
       console.log(response);
@@ -66,30 +71,42 @@ export class RegistrationformComponent implements OnInit {
     )
   }
   saveCust(cust: Customer, pass: string) {
+    console.log("country", this.countryName);
+    this.customer.country = this.countryName;
+    this.customer.state = this.city;
     console.log('customer data', cust);
     this.memberService.saveMember(cust).subscribe(response => {
-      alert("Successfully added Memebr in Record");
       console.log(response);
-      this.router.navigate(['dependents', response]);
+      this.response = response.memberId;
+      this.registerSucess=true;
+     // this.router.navigate(['dependents', response]);
     }, error => {
+     
       console.log(error);
-
       //this.router.navigate(['details', id])
     }
     )
   }
+  addDependent(){
+    this.router.navigate(['dependents', this.response]);
+  }
+  dependentClose(){
+    this.router.navigate(['updatemember']);
+  }
   getCountry() {
-    this.Country.push({ Id: 1, name: "India" }, { Id: 2, name: "Australia" });
+    this.Country.push({ Id: 1, name: "Pakistan" },{ Id: 2, name: "India" }, { Id: 3, name: "Australia" });
     console.log("counrty");
     console.log(this.Country);
   }
   getCity(event: any) {
     this.City = [];
-    var countryName = event.target.value;
-    if (countryName == 'India') {
-      this.City.push({ cityId: 1, name: "Surat" }, { cityId: 2, name: "Navsari" }, { cityId: 3, name: "Ahemdabad" });
-    } else if (countryName == 'Australia') {
+    this.countryName = event.target.value;
+    if (this.countryName == 'India') {
+      this.City.push({ cityId: 1, name: "Surat" }, { cityId: 2, name: "UP" }, { cityId: 3, name: "Ahemdabad" });
+    } else if (this.countryName == 'Australia') {
       this.City.push({ cityId: 1, name: "Sydney" }, { cityId: 2, name: "Gold Cost" }, { cityId: 3, name: "Darwin" });
+    } else if (this.countryName == 'Pakistan') {
+      this.City.push({ cityId: 1, name: "Sindh" }, { cityId: 2, name: "Balochistan" }, { cityId: 3, name: "Gilgit-Baltistan" });
     }
   }
 }
