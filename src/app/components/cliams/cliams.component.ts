@@ -31,6 +31,7 @@ export class CliamsComponent implements OnInit {
     })
   }
   applyforClaim(id: number) {
+    this.claim = new Claim();
     this.memberService.getMemberById(id).subscribe(data => {
       console.log(data);
       this.savedmember = data;
@@ -49,4 +50,9 @@ export class CliamsComponent implements OnInit {
   dependentClaim(memberId: string) {
     this.router.navigate(['memberclaim', memberId]);
   }
+
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+  }
+
 }

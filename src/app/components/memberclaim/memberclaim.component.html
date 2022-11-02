@@ -82,8 +82,8 @@
                                 style="color:rgb(221, 11, 29)">Amount is Required</div>
 
                         </div>
-                        <div class="makecenter modal-footer">
-                            <button type="submit" class="btn btn-success me-2">Submit</button>
+                        <div class="makecenter">
+                            <button type="submit" [disabled]="!registerForm.valid" class="btn btn-success me-2">Submit</button>
                             <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>

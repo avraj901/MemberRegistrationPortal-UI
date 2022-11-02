@@ -22,7 +22,7 @@
                         <div *ngIf="(email.touched || registerForm.submitted) && email.errors?.['required']"
                             style="color:rgb(214, 16, 16)">Email is Required</div>
                         <div *ngIf="(email.touched || registerForm.submitted) && email.errors?.['pattern']"
-                            style="color:rgb(226, 13, 13)">Enter a valid Email</div>
+                            style="color:rgb(226, 13, 13)">Enter a valid Email Id</div>
                     </div>
                     <div class="mb-3">
                         <input type="text" class="form-control" id="pannumber" name="pannumber"
@@ -30,8 +30,6 @@
                             minlength="12" maxlength="12" required [pattern]="'^[a-zA-Z0-9]+$'">
                         <div *ngIf="(pannumber.touched || registerForm.submitted) && pannumber.errors?.['required']"
                             style="color:rgb(235, 16, 16)">*Pan number is Required</div>
-                        <div *ngIf="(pannumber.touched || registerForm.submitted) && pannumber.errors?.['maxlength']"
-                            style="color:rgb(212, 14, 14)">*Pan Number should not be more than 12 characters</div>
                         <div *ngIf="(pannumber.touched || registerForm.submitted) && pannumber.errors?.['minlength']"
                             style="color:rgb(230, 11, 11)">*Pan Number should be 12 characters</div>
                         <div *ngIf="(pannumber.touched || registerForm.submitted) && pannumber.errors?.['pattern']"
@@ -40,8 +38,6 @@
                     <div class="mb-3">
                         <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter Date Of Birth"
                             [(ngModel)]="customer.dob" #dob="ngModel" [max]="getToday()" required>
-                        <!-- <div *ngIf="(dob.touched || registerForm.submitted) && dob.errors?.['required']"
-                            style="color:rgb(228, 20, 82)">Date of Birth is Required</div> -->
                     </div>
                     <div class="mb-3">
                         <input type="text" class="form-control" id="number" name="number"
@@ -49,8 +45,6 @@
                             minlength="10" maxlength="10" required>
                         <div *ngIf="(number.touched || registerForm.submitted) && number.errors?.['required']"
                             style="color:rgb(219, 13, 13)">Contact Number is Required</div>
-                        <div *ngIf="(number.touched || registerForm.submitted) && number.errors?.['maxlength']"
-                            style="color:rgb(221, 14, 31)">Number should be of 10 digits</div>
                         <div *ngIf="(number.touched || registerForm.submitted) && number.errors?.['minlength']"
                             style="color:rgb(226, 12, 12)">Number should be of 10 digits</div>
                     </div>
@@ -63,18 +57,14 @@
                     <div class="mb-3">
                         <input type="password" class="form-control" id="password" name="password"
                             placeholder="Enter Password" [(ngModel)]="customer.password" minlength="8" maxlength="16"
-                            #password="ngModel" required>
+                            #password="ngModel" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%?&])[A-Za-z\d$@$!%?&]{8,}$">
                         <div *ngIf="(password.touched || registerForm.submitted) && password.errors?.['required']"
                             style="color:rgb(238, 10, 86)">Password is Required</div>
-                         <!-- <div *ngIf="(password.touched || registerForm.submitted) && password.errors?.['pattern']"
-                            style="color:rgb(17, 178, 103)">Password should have minimum 8 character and Must Contain
-                            numerics & special characters & one capital letter</div> -->
+                         <div *ngIf="(password.touched || registerForm.submitted) && password.errors?.['pattern']"
+                            style="color:rgb(231, 18, 46)">Password should have minimum 8 character and Must Contain
+                            numerics & special characters & one capital letter</div>
                     </div>
                     <div class="mb-3">
-                        <!-- <input type="text" class="form-control" id="country" name="country" placeholder="Enter country"
-                            [(ngModel)]="customer.country" #country="ngModel" required>
-                          <div *ngIf="(country.touched || registerForm.submitted) && country.errors?.['required']"
-                            style="color:rgb(236, 18, 18)">Country is Required</div> -->
                         <label>Please select the Country</label>
                         <select (change)='getCity($event)' class="form-select form-control">
                             <option *ngFor="let Country of Country;" [ngValue]="Country.Id">
@@ -83,10 +73,6 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <!-- <input type="text" class="form-control" id="state" name="state" placeholder="Enter state"
-                            [(ngModel)]="customer.state" #state="ngModel" required>
-                          <div *ngIf="(state.touched || registerForm.submitted) && state.errors?.['required']"
-                            style="color:rgb(240, 12, 12)">state is Required</div> -->
                         <label>Please select the City</label>
                         <select class=" form-select form-control" name="city" [(ngModel)]="city">
                             <option *ngFor="let City of City;" [ngValue]="City.name">
@@ -112,4 +98,3 @@
     </div>
 </div>
 <!-- [disabled]="!registerForm.valid" -->
-<!-- pattern="^(?=.?[A-Z])(?=.?[a-z])(?=.*?[0-9]).{8,16}$" -->

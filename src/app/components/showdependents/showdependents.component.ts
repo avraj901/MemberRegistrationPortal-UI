@@ -13,6 +13,7 @@ export class ShowdependentsComponent implements OnInit {
   memberId: string = "";
   dependentList: Memberdependents[] = [];
   savedependent: Memberdependents = new Memberdependents();
+  
 
   constructor(private route: ActivatedRoute,private dependentService: DependentsService) { }
 
@@ -45,5 +46,7 @@ export class ShowdependentsComponent implements OnInit {
       this.getDependentsByMemberId();
     }, error => console.log(error));
   }
-
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+  }
 }

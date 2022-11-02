@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MemberregistrationComponent } from './components/memberregistration/memberregistration.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RegistrationformComponent } from './components/registrationform/registrationform.component';
@@ -19,7 +18,6 @@ import { WelcomepageComponent } from './components/welcomepage/welcomepage.compo
 @NgModule({
   declarations: [
     AppComponent,
-    MemberregistrationComponent,
     HomeComponent,
     RegistrationformComponent,
     MemberdependentsComponent,

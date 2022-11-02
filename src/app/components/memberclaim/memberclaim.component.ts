@@ -38,8 +38,8 @@ export class MemberclaimComponent implements OnInit {
     this.claimService.createClaimForDependent(claim).subscribe(data => {
       console.log(data);
       alert("Claim applied successfully..!")
-      this.router.navigate(['registration']);
-    })
+      this.router.navigate(['claim']);
+    }, error => console.log(error))
   }
   applyforClaim(id: number) {
     this.dependentService.getDependentById(id).subscribe(data => {

@@ -39,6 +39,9 @@ export class MemberRegistrationService {
       console.log('error',err);
       // if error is server-side error
       errorMessage = `Message: ${err.error.message}`;
+      if(err.status == 500){
+        errorMessage = "Some thing went worng please try again"
+      }
     }
     alert(errorMessage);
     return throwError(errorMessage);

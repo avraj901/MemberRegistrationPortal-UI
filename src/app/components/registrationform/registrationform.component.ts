@@ -16,18 +16,13 @@ export class RegistrationformComponent implements OnInit {
   memberForm!: FormGroup;
   submitted = false;
   response = "";
-  getToday(): string {
-    return new Date().toISOString().split('T')[0]
-  }
-
   countryName = "";
   city = "";
   Country: Country[] = [];
   City: City[] = [];
-  registerSucess:boolean = false;
+  registerSucess: boolean = false;
   lessThanEighteen: boolean = false;
   errorMessage = '';
-
   cpass: string = ''
   customer: Customer = {
     id: 0,
@@ -40,7 +35,6 @@ export class RegistrationformComponent implements OnInit {
     panNumber: '',
     country: '',
     state: ''
-
   }
 
   constructor(private memberService: MemberRegistrationService,
@@ -50,7 +44,6 @@ export class RegistrationformComponent implements OnInit {
   ngOnInit(): void {
     this.memberForm = this.formBuilder.group({
       username: ['', Validators.required]
-
     });
     this.getCountry();
   }
@@ -61,7 +54,6 @@ export class RegistrationformComponent implements OnInit {
     if (this.memberForm.invalid) {
       return;
     }
-   
     this.memberService.saveMember(member).subscribe(response => {
       alert("Successfully added Memebr in Record");
       console.log(response);
@@ -78,23 +70,20 @@ export class RegistrationformComponent implements OnInit {
     this.memberService.saveMember(cust).subscribe(response => {
       console.log(response);
       this.response = response.memberId;
-      this.registerSucess=true;
-     // this.router.navigate(['dependents', response]);
+      this.registerSucess = true;
     }, error => {
-     
       console.log(error);
-      //this.router.navigate(['details', id])
     }
     )
   }
-  addDependent(){
+  addDependent() {
     this.router.navigate(['dependents', this.response]);
   }
-  dependentClose(){
+  dependentClose() {
     this.router.navigate(['updatemember']);
   }
   getCountry() {
-    this.Country.push({ Id: 1, name: "Pakistan" },{ Id: 2, name: "India" }, { Id: 3, name: "Australia" });
+    this.Country.push({ Id: 1, name: "Pakistan" }, { Id: 2, name: "India" }, { Id: 3, name: "Australia" });
     console.log("counrty");
     console.log(this.Country);
   }
@@ -109,6 +98,11 @@ export class RegistrationformComponent implements OnInit {
       this.City.push({ cityId: 1, name: "Sindh" }, { cityId: 2, name: "Balochistan" }, { cityId: 3, name: "Gilgit-Baltistan" });
     }
   }
+
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+  }
+
 }
 interface Country {
   Id: number;

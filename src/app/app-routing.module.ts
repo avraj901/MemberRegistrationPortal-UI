@@ -5,7 +5,6 @@ import { DependentsComponent } from './components/dependents/dependents.componen
 import { HomeComponent } from './components/home/home.component';
 import { MemberclaimComponent } from './components/memberclaim/memberclaim.component';
 import { MemberdependentsComponent } from './components/memberdependents/memberdependents.component';
-import { MemberregistrationComponent } from './components/memberregistration/memberregistration.component';
 import { RegistrationformComponent } from './components/registrationform/registrationform.component';
 import { ShowdependentsComponent } from './components/showdependents/showdependents.component';
 import { UpdatedependentsComponent } from './components/updatedependents/updatedependents.component';
@@ -13,7 +12,6 @@ import { WelcomepageComponent } from './components/welcomepage/welcomepage.compo
 
 const routes: Routes = [
   {path: '', redirectTo: 'registration', pathMatch:'full'},
-  {path : 'member', component: MemberregistrationComponent},
   {path : "home", component: HomeComponent },
   {path : "registration", component: RegistrationformComponent},
   {path : "dependents/:response", component: MemberdependentsComponent},

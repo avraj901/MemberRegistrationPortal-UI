@@ -41,7 +41,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="inputDob" class="form-label">Date Of Birth</label>
-                        <input type="text" [(ngModel)]="savedependent.dob"class="form-control" id="inputDob">
+                        <input type="date" [ngModel]="(savedependent.dob)  | date:'yyyy-MM-dd'" (ngModelChange)="savedependent.dob = $event" class="form-control" id="inputDob" [max]="getToday()">
                     </div>
                 </div>
                 <div class="modal-footer">

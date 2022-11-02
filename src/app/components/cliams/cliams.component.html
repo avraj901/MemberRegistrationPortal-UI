@@ -51,15 +51,15 @@
                             <label>Enter Date Of Admission</label>
                             <input type="date" class="form-control" id="dob" name="dob"
                                 placeholder="Enter Date Of Admission" [(ngModel)]="claim.dateOfAdmission" #dob="ngModel"
-                                required>
+                                [max]="getToday()" required>
                             <div *ngIf="(dob.touched || registerForm.submitted) && dob.errors?.['required']"
                                 style="color:rgb(212, 12, 22)">Date of admission is Required</div>
                         </div>
                         <div class="mb-3">
-                            <label>Enter Date of discharge</label>
+                            <label>Enter Date of Discharge</label>
                             <input type="date" class="form-control" id="dod" name="dod"
                                 placeholder="Enter Date Of Discharge" [(ngModel)]="claim.dateOfDischarge" #dod="ngModel"
-                                required>
+                                [max]="getToday()" required>
                             <div *ngIf="(dod.touched || registerForm.submitted) && dod.errors?.['required']"
                                 style="color:rgb(231, 18, 28)">Date of discharge is Required</div>
                         </div>
@@ -69,10 +69,10 @@
                                 class="form-control" id="inputDate" name="dateofbirth">
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="address" name="address"
-                                placeholder="Enter provider Name" [(ngModel)]="claim.providerName" #address="ngModel"
+                            <input type="text" class="form-control" id="provider" name="provider"
+                                placeholder="Enter provider Name" [(ngModel)]="claim.providerName" #provider="ngModel"
                                 required>
-                            <div *ngIf="(address.touched || registerForm.submitted) && address.errors?.['required']"
+                            <div *ngIf="(provider.touched || registerForm.submitted) && provider.errors?.['required']"
                                 style="color:rgb(223, 19, 19)">Provider name is Required</div>
                         </div>
                         <div class="mb-3">
@@ -84,7 +84,7 @@
                                 style="color:rgb(221, 11, 29)">Amount is Required</div>
                         </div>
                         <div class="makecenter ">
-                            <button type="submit" class="btn btn-success me-2">Submit</button>
+                            <button type="submit" [disabled]="!registerForm.valid" class="btn btn-success me-2">Submit</button>
                             <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>

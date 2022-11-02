@@ -17,7 +17,7 @@ export class MemberdependentsComponent implements OnInit {
     id: 0,
     name: '',
     count: 0,
-    dob: new Date(1000, 0, 0, 0, 0, 0, 0),
+    dob: new Date("12/15/1900 00:00:00"),
     memberId: ''
   }
   getToday(): string {
